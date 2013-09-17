@@ -14,11 +14,11 @@ CCShake* CCShake::create(float d, float strength)
 
 CCShake* CCShake::create(float duration, cocos2d::CCPoint strength)
 {
-	CCShake *p_action = new CCShake();
-	p_action->initWithDuration(duration, strength);
-	p_action->autorelease();
+	CCShake* action = new CCShake();
+	action->initWithDuration(duration, strength);
+	action->autorelease();
 	
-	return p_action;
+	return action;
 }
 
 bool CCShake::initWithDuration(float duration, cocos2d::CCPoint strength)
@@ -34,8 +34,6 @@ bool CCShake::initWithDuration(float duration, cocos2d::CCPoint strength)
 
 void CCShake::update(float time)
 {
-	CCActionInterval::update(time);
-	
 	CCPoint rand = ccp(rangedRand(-_strength.x, _strength.x),
 					   rangedRand(-_strength.y, _strength.y));
 	

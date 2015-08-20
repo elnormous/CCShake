@@ -1,20 +1,20 @@
 #pragma once
 
-#include <actions/CCActionInterval.h>
+#include <CCActionInterval.h>
 
-class CCShake : public cocos2d::CCActionInterval
+class Shake : public cocos2d::ActionInterval
 {
 public:
-	static CCShake* create(float d, float strength);
-	static CCShake* create(float d, cocos2d::CCPoint strength);
+	static Shake* create(float d, float strength);
+	static Shake* create(float d, cocos2d::Point strength);
 	
-	bool initWithDuration(float d, cocos2d::CCPoint strength);
+	bool initWithDuration(float d, cocos2d::Point strength);
 	
-	virtual void startWithTarget(cocos2d::CCNode* target);
+	virtual void startWithTarget(cocos2d::Node* target);
 	virtual void update(float time);
 	virtual void stop(void);
 	
 protected:
-	cocos2d::CCPoint _initial;
-	cocos2d::CCPoint _strength;
+	cocos2d::Point _initial;
+	cocos2d::Point _strength;
 };

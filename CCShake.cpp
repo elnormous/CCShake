@@ -7,21 +7,21 @@ inline float rangedRand(float min, float max)
 	return CCRANDOM_0_1() * (max - min) + min;
 }
 
-CCShake* CCShake::create(float d, float strength)
+Shake* Shake::create(float d, float strength)
 {
-	return create(d, ccp(strength, strength));
+	return create(d, Point(strength, strength));
 }
 
-CCShake* CCShake::create(float duration, cocos2d::CCPoint strength)
+Shake* Shake::create(float duration, cocos2d::Point strength)
 {
-	CCShake* action = new CCShake();
+	Shake* action = new Shake();
 	action->initWithDuration(duration, strength);
 	action->autorelease();
 	
 	return action;
 }
 
-bool CCShake::initWithDuration(float duration, cocos2d::CCPoint strength)
+bool Shake::initWithDuration(float duration, cocos2d::Point strength)
 {
 	if (CCActionInterval::initWithDuration(duration))
 	{
@@ -32,24 +32,24 @@ bool CCShake::initWithDuration(float duration, cocos2d::CCPoint strength)
 	return false;
 }
 
-void CCShake::update(float time)
+void Shake::update(float time)
 {
-	CCPoint rand = ccp(rangedRand(-_strength.x, _strength.x),
+	Point rand = Point(rangedRand(-_strength.x, _strength.x),
 					   rangedRand(-_strength.y, _strength.y));
 	
-	m_pTarget->setPosition(_initial + rand);
+	_target->setPosition(_initial + rand);
 }
 
-void CCShake::startWithTarget(CCNode* target)
+void Shake::startWithTarget(Node* target)
 {
 	CCActionInterval::startWithTarget(target);
 	
 	_initial = target->getPosition();
 }
 
-void CCShake::stop(void)
+void Shake::stop(void)
 {
-	m_pTarget->setPosition(_initial);
+	_target->setPosition(_initial);
 	
 	CCActionInterval::stop();
 }

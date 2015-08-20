@@ -37,7 +37,7 @@ void CCShake::update(float time)
 	CCPoint rand = ccp(rangedRand(-_strength.x, _strength.x),
 					   rangedRand(-_strength.y, _strength.y));
 	
-	m_pTarget->setPosition(_initial + rand);
+	getTarget()->setPosition( ccp( randx, randy) );
 }
 
 void CCShake::startWithTarget(CCNode* target)
@@ -49,7 +49,7 @@ void CCShake::startWithTarget(CCNode* target)
 
 void CCShake::stop(void)
 {
-	m_pTarget->setPosition(_initial);
+	getTarget()->setPosition(_initial);
 	
 	CCActionInterval::stop();
 }
